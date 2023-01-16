@@ -1,0 +1,53 @@
+basePath: /api
+definitions:
+  payloads.CompareRequest:
+    properties:
+      name_core:
+        type: string
+      name_pmo:
+        type: string
+    required:
+    - name_core
+    - name_pmo
+    type: object
+  payloads.CompareResponse:
+    properties:
+      logs_id:
+        type: string
+      name_matching_threshold:
+        type: number
+      status_code:
+        type: string
+      status_message:
+        type: string
+    type: object
+info:
+  contact:
+    name: Achmad Syirod
+  description: Compare name service API in Go using Gin framework.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: gin-string-similarity
+  version: "1.0"
+paths:
+  /compare-name:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: CompareRequest JSON
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/payloads.CompareRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/payloads.CompareResponse'
+      summary: Compare name using jaro-winkler method
+swagger: "2.0"

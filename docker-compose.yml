@@ -1,0 +1,26 @@
+version: "3.3"
+services:
+  api:
+    image: compare-name-go:latest
+    build: .
+    ports:
+      - "18065:8080"
+    networks:
+      - web_net
+    volumes:
+      - ./logs:/logs
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "0.2"
+      replicas: 1
+    restart: on-failure
+    env_file:
+      - .env
+    command:
+      - /app/binary
+networks:
+  web_net:
+    driver: overlay
+    attachable: true

@@ -1,0 +1,82 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Compare name service API in Go using Gin framework.",
+        "title": "gin-string-similarity",
+        "contact": {
+            "name": "Achmad Syirod"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "basePath": "/api",
+    "paths": {
+        "/compare-name": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Compare name using jaro-winkler method",
+                "parameters": [
+                    {
+                        "description": "CompareRequest JSON",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/payloads.CompareRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/payloads.CompareResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "payloads.CompareRequest": {
+            "type": "object",
+            "required": [
+                "name_core",
+                "name_pmo"
+            ],
+            "properties": {
+                "name_core": {
+                    "type": "string"
+                },
+                "name_pmo": {
+                    "type": "string"
+                }
+            }
+        },
+        "payloads.CompareResponse": {
+            "type": "object",
+            "properties": {
+                "logs_id": {
+                    "type": "string"
+                },
+                "name_matching_threshold": {
+                    "type": "number"
+                },
+                "status_code": {
+                    "type": "string"
+                },
+                "status_message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
