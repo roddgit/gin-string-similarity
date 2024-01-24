@@ -5,9 +5,11 @@ import (
 	_ "gin-string-similarity/docs"
 	"gin-string-similarity/routes"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
+	"go.elastic.co/apm/module/apmgin"
 )
 
 var env = configs.EnvConfig()
@@ -18,11 +20,17 @@ var env = configs.EnvConfig()
 // @license.name  Apache 2.0
 // @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
 // @BasePath  /api
+var (
+	router = gin.New()
+)
+
 func main() {
 	// router := gin.Default()
 	// routes.CompareRoute(router)
 
-	router := gin.New()
+	// router := gin.New()
+	router.Use(cors.Default())
+	router.Use(apmgin.Middleware(router))
 
 	routes.CompareRoute(router)
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))

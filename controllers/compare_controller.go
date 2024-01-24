@@ -19,7 +19,7 @@ var logs = configs.ZeroLogger()
 func CompareHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var compare payloads.CompareRequest
-		var logs_id = configs.LogsIdGenerator()
+		var logs_id = configs.LogsIdGenerator("GIN")
 
 		// validate the request body
 		if err := c.BindJSON(&compare); err != nil {

@@ -24,7 +24,7 @@ func EnvConfig() map[string]string {
 
 	result := make(map[string]string)
 
-	result["PORT"] = getEnv("PORT", "8080")
+	result["PORT"] = getEnv("GIN_PORT", "8080")
 	result["DB_METHOD"] = getEnv("DB_METHOD", "MONGO")
 	result["MONGOURI"] = getEnv("MONGOURI", "mongodb://root:password@localhost:27017")
 	result["OR_HOST_DB"] = getEnv("OR_HOST_DB", "localhost")

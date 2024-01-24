@@ -9,7 +9,6 @@ import (
 	"strconv"
 	"strings"
 	"time"
-
 )
 
 func StartProcess() int64 {
@@ -67,10 +66,10 @@ func SubstrStr(input string, start int, length int) string {
 	return string(asRunes[start : start+length])
 }
 
-func LogsIdGenerator() string {
+func LogsIdGenerator(uniq string) string {
 	t := time.Now()
 	ts := t.Format("060102150405.000000")
-	result := strings.Replace(ts, ".", "", -1)
+	result := uniq + strings.Replace(ts, ".", "", -1)
 
 	return result
 }

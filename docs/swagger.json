@@ -3,9 +3,7 @@
     "info": {
         "description": "Compare name service API in Go using Gin framework.",
         "title": "gin-string-similarity",
-        "contact": {
-            "name": "Achmad Syirod"
-        },
+        "contact": {},
         "license": {
             "name": "Apache 2.0",
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
